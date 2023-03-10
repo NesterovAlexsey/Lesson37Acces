@@ -27,15 +27,19 @@ public class Pawn {
     return column;
   }
 
-  public void setCoordinates(int row, int column, Color color) {
+  public Color getColor() {
+    return color;
+  }
+
+  public void setCoordinates(int row, int column) {
     checkCoordinates(row, column);
-    checkPawnStep(row, column, color);
+    checkPawnStep(row, column);
     this.row = row;
     this.column = column;
 
   }
 
-  private void checkPawnStep(int row, int column, Color color) {
+  private void checkPawnStep(int row, int column) {
     if (Math.abs(row - getRow()) > 1) {
       System.err.println("First " + row + column);
       throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
@@ -44,12 +48,12 @@ public class Pawn {
       System.err.println("Second " + row + column);
       throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
     }
-    if (color == Color.WHITE) {
+    if (getColor() == Color.WHITE) {
       if (!(column > getColumn())) {
         throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
       }
     }
-    if (color == Color.BLACK) {
+    if (getColor() == Color.BLACK) {
       if (column >= getColumn()) {
         throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
       }
