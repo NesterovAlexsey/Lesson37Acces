@@ -42,6 +42,10 @@ public class Rook {
       throw new IllegalArgumentException(
           String.format("Некорректный ход для Ладьи: %d %d%n", row, column));
     }
+    if (row == getRow() && column == getColumn()) {
+      throw new IllegalArgumentException(
+          String.format("Фигура не может оставаться на том же месте: %d %d%n", row, column));
+    }
   }
 
   private static void checkCoordinates(int row, int column) {
