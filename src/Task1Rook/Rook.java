@@ -30,6 +30,20 @@ public class Rook {
     return column;
   }
 
+  public void setCoordinates(int row, int column) {
+    checkCoordinates(row, column);
+    checkRookStep(row, column);
+    this.row = row;
+    this.column = column;
+  }
+
+  private void checkRookStep(int row, int column) {
+    if (!(row == getRow()) && !(column == getColumn())) {
+      throw new IllegalArgumentException(
+          String.format("Некорректный ход для Ладьи: %d %d%n", row, column));
+    }
+  }
+
   private static void checkCoordinates(int row, int column) {
     if (row < 1 || row > 8) {
       throw new IllegalArgumentException("Некорректный номер строки: " + row);
