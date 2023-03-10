@@ -32,23 +32,27 @@ public class Pawn {
     checkPawnStep(row, column, color);
     this.row = row;
     this.column = column;
-    checkCoordinates(row, column);
 
-    // TODO проверка возможности хода
   }
 
   private void checkPawnStep(int row, int column, Color color) {
     if (Math.abs(row - getRow()) > 1) {
-      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row);
+      System.err.println("First " + row + column);
+      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
     }
     if (Math.abs(column - getColumn()) > 1) {
-      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + column);
+      System.err.println("Second " + row + column);
+      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
     }
-    if ((color == Color.WHITE) && (getColumn() > column)) {
-      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + color + column);
+    if (color == Color.WHITE) {
+      if (!(column > getColumn())) {
+        throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
+      }
     }
-    if ((color == Color.BLACK) && (getColumn() < column)) {
-      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + color + column);
+    if (color == Color.BLACK) {
+      if (column >= getColumn()) {
+        throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
+      }
     }
   }
 
