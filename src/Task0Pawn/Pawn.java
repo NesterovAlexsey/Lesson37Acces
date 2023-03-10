@@ -1,6 +1,5 @@
 package Task0Pawn;
 
-// класс "Пешка"
 public class Pawn {
   public enum Color {
     WHITE,
@@ -36,26 +35,27 @@ public class Pawn {
     checkPawnStep(row, column);
     this.row = row;
     this.column = column;
-
   }
 
   private void checkPawnStep(int row, int column) {
     if (Math.abs(row - getRow()) > 1) {
-      System.err.println("First " + row + column);
-      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
+      throw new IllegalArgumentException(
+          String.format("Некорректный ход для пешки: %d %d%n", row, column));
     }
     if (Math.abs(column - getColumn()) > 1) {
-      System.err.println("Second " + row + column);
-      throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
+      throw new IllegalArgumentException(
+          String.format("Некорректный ход для пешки: %d %d%n", row, column));
     }
     if (getColor() == Color.WHITE) {
       if (!(column > getColumn())) {
-        throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
+        throw new IllegalArgumentException(
+            String.format("Некорректный ход для пешки: %d %d%n", row, column));
       }
     }
     if (getColor() == Color.BLACK) {
       if (column >= getColumn()) {
-        throw new IllegalArgumentException("Некорректный новый ход для пешки: " + row + column);
+        throw new IllegalArgumentException(
+            String.format("Некорректный ход для пешки: %d %d%n", row, column));
       }
     }
   }
